@@ -24,9 +24,7 @@ export class CategoriasPage {
         //console.log(response); imprime no console
         this.items = response;  //armazena a resposta na variável items
       },
-      error => {
-        console.log(error);
-      });
+      error => {});
   }
 
 }

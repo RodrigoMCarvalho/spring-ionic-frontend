@@ -32,7 +32,8 @@ export class HomePage {
   login(){
     this.auth.authenticate(this.creds)
       .subscribe(response => {
-        console.log(response.headers.get('Authorization'));
+        this.auth.sucessfullLogin(response.headers.get('Authorization'));
+        //console.log(response.headers.get('Authorization')); teste para mostrar o bearer
         this.navCtrl.setRoot('CategoriasPage');
       },
       error => {})
