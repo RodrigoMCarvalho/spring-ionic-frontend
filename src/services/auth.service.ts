@@ -31,7 +31,7 @@ export class AuthService {
     let tok = authorizationValue.substring(7); //recortar o string a partir do sétimo caracter
     let user : LocalUser = {
       token: tok,
-      email: this.jwtHelper.decodeToken(tok) //pega o email do token
+      email: this.jwtHelper.decodeToken(tok).sub //pega o email do token / sub -> pega apenas o email do json
     };
     this.storage.setLocalUser(user); //salvar o usuário no LocalStorage ( HTML5 )
   }
