@@ -1,3 +1,4 @@
+import { API_CONFIG } from './../../config/api.config';
 import { CategoriaDTO } from './../../models/categoria.dto';
 import { CategoriaService } from './../../services/domain/categoria.service';
 import { Component } from '@angular/core';
@@ -10,7 +11,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CategoriasPage {
 
-  items: CategoriaDTO[];
+  bucketUrl: string = API_CONFIG.bucketBaseUrl;
+  items: CategoriaDTO[]; //lista que será exposta na página
 
   constructor(
     public navCtrl: NavController,
