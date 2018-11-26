@@ -29,18 +29,23 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
-  login(){
-    this.auth.authenticate(this.creds)
+  ionViewDidEnter() {
+    this.auth.refreshToken()
       .subscribe(response => {
         this.auth.sucessfullLogin(response.headers.get('Authorization'));
         //console.log(response.headers.get('Authorization')); teste para mostrar o bearer
         this.navCtrl.setRoot('CategoriasPage');
       },
-      error => {})
-
-
-
-    //console.log(this.creds);
-
+      error => {});
   }
+
+  login() {
+    this.auth.authenticate(this.creds)
+      .subscribe(response => {
+        this.auth.sucessfullLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('CategoriasPage');
+      },
+      error => {});
+  }
+  //console.log(this.creds);
 }

@@ -22,10 +22,21 @@ export class AuthService {
         `${API_CONFIG.baseUrl}/login`,
         creds,
         {
-            observe: 'response', //para evitar um erro de parse em JSON num corpo vazio
-            responseType: 'text'
+            observe: 'response',
+            responseType: 'text' //para evitar um erro de parse em JSON num corpo vazio
         });
-}
+  }
+
+  refreshToken() {
+    return this.http.post(
+        `${API_CONFIG.baseUrl}/auth/refresh_token`,
+        {},
+        {
+            observe: 'response',
+            responseType: 'text' //para evitar um erro de parse em JSON num corpo vazio
+        });
+  }
+
 
   sucessfullLogin(authorizationValue: string){
     let tok = authorizationValue.substring(7); //recortar o string a partir do sétimo caracter
