@@ -29,8 +29,17 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
-  ionViewDidEnter() {
-    this.auth.refreshToken()
+  //ionViewDidEnter() {
+  //  this.auth.refreshToken()
+  //    .subscribe(response => {
+  //      this.auth.sucessfullLogin(response.headers.get('Authorization'));
+  //      this.navCtrl.setRoot('CategoriasPage');
+  //    },
+  //    error => {});
+  //}
+
+  login() {
+    this.auth.authenticate(this.creds)
       .subscribe(response => {
         this.auth.sucessfullLogin(response.headers.get('Authorization'));
         //console.log(response.headers.get('Authorization')); teste para mostrar o bearer
@@ -38,14 +47,7 @@ export class HomePage {
       },
       error => {});
   }
-
-  login() {
-    this.auth.authenticate(this.creds)
-      .subscribe(response => {
-        this.auth.sucessfullLogin(response.headers.get('Authorization'));
-        this.navCtrl.setRoot('CategoriasPage');
-      },
-      error => {});
+  signup() {
+    this.navCtrl.push('SignupPage');
   }
-  //console.log(this.creds);
 }
