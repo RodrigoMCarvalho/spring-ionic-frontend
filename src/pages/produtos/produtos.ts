@@ -11,6 +11,7 @@ import { ProdutoService } from '../../services/domain/produto.service';
 })
 export class ProdutosPage {
 
+  bucketUrl: string = API_CONFIG.bucketBaseUrl;
   items: ProdutoDTO[];
 
   constructor(public navCtrl: NavController,
@@ -39,7 +40,7 @@ export class ProdutosPage {
     }
   }
 
-  showDetails(){
-    this.navCtrl.push('ProdutoDetailPage');
+  showDetails(produto_id: string){
+    this.navCtrl.push('ProdutoDetailPage', {produto_id: produto_id}); //passa o id enviado de produtos.html para produto-details.ts
   }
 }
