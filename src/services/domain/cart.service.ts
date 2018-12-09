@@ -10,7 +10,7 @@ export class CartService{
   }
 
   createOrClearCart(): Cart {
-    let cart: Cart = {item:[]};  //cria um carrinho vazio
+    let cart: Cart = {items:[]};  //cria um carrinho vazio
     this.storage.setCart(cart);  //armazena ele no localStorage
     return cart; //retorna o cart
   }
@@ -25,9 +25,9 @@ export class CartService{
 
   addProduto(produto: ProdutoDTO) : Cart {
     let cart = this.getCart();  // trata se o carrinho existe
-    let position = cart.item.findIndex(x => x.produto.id == produto.id)    //encontrar a posição de um elemento
+    let position = cart.items.findIndex(x => x.produto.id == produto.id)    //encontrar a posição de um elemento
     if(position == -1) {  //findIndex retorna -1 se o produto nao existir
-      cart.item.push({quantidade: 1, produto: produto});
+      cart.items.push({quantidade: 1, produto: produto});
     }
     this.storage.setCart(cart);
     return cart;
