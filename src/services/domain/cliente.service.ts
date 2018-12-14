@@ -14,8 +14,11 @@ export class ClienteService {
       public storage : StorageService){
     }
 
-    findByEmail(email : string) {  //retorna todos os dados do cliente, inclusive seus enderecos
+    findById(id : string) {
+      return this.http.get(`${API_CONFIG.baseUrl}/clientes/${id}`);
+    }
 
+    findByEmail(email : string) {  //retorna todos os dados do cliente, inclusive seus enderecos
       return this.http.get(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
     }
 
