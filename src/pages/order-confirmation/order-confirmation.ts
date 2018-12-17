@@ -19,6 +19,7 @@ export class OrderConfirmationPage {
   cartItems: CartItem[];
   cliente: ClienteDTO;
   endereco: EnderecoDTO;
+  codPedido: string;
 
   constructor(
     public navCtrl: NavController,
@@ -55,8 +56,8 @@ export class OrderConfirmationPage {
     this.pedidoService.insert(this.pedido)
       .subscribe(response => {
         this.cartService.createOrClearCart();
-        console.log(response.headers.get('location')); //após a inserção desvolve um location (visualizar melhor no Postman)
-      },
+        this.codPedido = this.extractId(response.headers.get('location')); //após a inserção desvolve um location (visualizar melhor no Postman)
+      },                                                                   //retorna código do pedido
       error => {
         if(error.status == 403) {
           this.navCtrl.setRoot('HomePage');
@@ -66,6 +67,15 @@ export class OrderConfirmationPage {
 
   back() {
     this.navCtrl.setRoot('CartPage');
+  }
+
+  home() {
+    this.navCtrl.setRoot('CategoriasPage');
+  }
+
+  private extractId (location: string) {
+    let position = location.lastIndexOf('/'); //localizar a última "/"
+    return location.substring(position +1, location.length); //substring - função que recorta o string (recorta a posição depois da "/")
   }
 
 }
