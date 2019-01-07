@@ -29,7 +29,8 @@ export class ClienteService {
       return this.http.get(url, {responseType : 'blob'});
     }
 
-    uploadPicture(picture ) {
+    uploadPicture(picture) {
+      console.log(picture);
       let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
       let formData: FormData = new FormData();
       formData.set('file', pictureBlob, 'file.png');

@@ -78,7 +78,6 @@ export class ProfilePage {
     sendPicture() {
       this.clienteService.uploadPicture(this.picture)
         .subscribe(response => {
-          this.picture = null;
           this.loadData();
         },
           error => {
